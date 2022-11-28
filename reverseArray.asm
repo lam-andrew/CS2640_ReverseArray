@@ -15,6 +15,7 @@
 .data 
 	prompt1: .asciiz "\nArray elements are: "
 	prompt2: .asciiz "\nNew array is: "
+	array: .word 5, 4, 3, 2, 1	
 
 .text 
 
