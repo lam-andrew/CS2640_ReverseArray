@@ -12,9 +12,23 @@
 	syscall 
 .end_macro 
 
+# macro that prints a given interger 
+.macro ints(%x)  
+ 	li $v0, 1 
+ 	move $a0, %x 
+ 	syscall 
+.end_macro 
+
+# macro that exits the program 
+.macro exit
+	li $v0, 10 
+	syscall 
+.end_macro
+
 .data 
 	prompt1: .asciiz "\nArray elements are: "
 	prompt2: .asciiz "\nNew array is: "
+	space: .asciiz " "
 	array: .word 5, 4, 3, 2, 1	
 
 .text 
@@ -22,14 +36,32 @@
 	# print out prompt1 to the user 
 	printS(prompt1)
 	
+	# initialize counter variable, $t0, with 0 
+	li $t0, 0
 	
-	##### print out elements of the original array #####
+##### print out elements of the original array #####
+loop: 
+	# load element at the position of $t0 into $t1 
+	lw $t1, array($t0)
+	
+	# print out the value $t0 
+	ints($t1)
+	
+	# print out space 
+	printS(space)
+	
+	# increase $t0 by 4, the size of word (so we can go to the next word in array) 
+	add $t0, $t0, 4
+	# if $t0 is less than 20, run the loop (since each word is 4 bytes, we have 5 elements, we know there are 20 bytes total) 
+	blt $t0, 20, loop 
 	
 	
-	##### reverse the elements of the array using stack #####
+##### reverse the elements of the array using stack #####
 	
 	
 	# print out prompt2 to the user 
 	printS(prompt2)
 	
 	# print out the new array elements  
+
+	exit 
