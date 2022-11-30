@@ -50,6 +50,13 @@ loop:
 	# print out space 
 	printS(space)
 	
+	
+	##### PUSH ONTO STACK #####
+	# push integer $t1 onto the stack
+	sub $sp, $sp, 4		# moves $sp downward to make space for our next integer (size word - 4 bytes) on the stack 
+	sw $t1, ($sp)		# push $t0 onto the stack (store value in $t0 into $sp) 
+	
+	
 	# increase $t0 by 4, the size of word (so we can go to the next word in array) 
 	add $t0, $t0, 4
 	# if $t0 is less than 20, run the loop (since each word is 4 bytes, we have 5 elements, we know there are 20 bytes total) 
@@ -57,6 +64,13 @@ loop:
 	
 	
 ##### reverse the elements of the array using stack #####
+loop1: 
+	# pop off stack and load into a register 
+	# print out the popped item 
+	
+	# counter to check if we got all array elements 
+	# branch back to loop1 
+	
 	
 	
 	# print out prompt2 to the user 
